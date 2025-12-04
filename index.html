@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignaturePro - Professional Email Signature Generator</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">📧 SignaturePro</div>
+        <div class="nav-buttons" id="navButtons">
+            <button class="btn-login" onclick="openModal('loginModal')">Login</button>
+            <button class="btn-signup" onclick="openModal('signupModal')">Sign Up</button>
+        </div>
+        <div class="user-info" id="userInfo" style="display: none;">
+            <span class="user-email" id="userEmail"></span>
+            <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="heroSection">
+        <h1>Create Professional Email Signatures in Minutes</h1>
+        <p>Stand out in every email with a stunning, customized signature</p>
+        <button class="btn-create" onclick="checkAuthAndCreate()">Create Your Signature</button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="featuresSection">
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Customizable Design</h3>
+            <p>Choose from multiple templates and customize colors, fonts, and layouts to match your brand</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Instant Preview</h3>
+            <p>See your signature come to life in real-time as you make changes</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Mobile Responsive</h3>
+            <p>Your signature looks perfect on all devices and email clients</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Easy Export</h3>
+            <p>Copy to clipboard or download HTML code ready to use in your email</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure & Private</h3>
+            <p>Your data is protected with Firebase authentication and encryption</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🆓</div>
+            <h3>Free to Use</h3>
+            <p>Create unlimited professional signatures at no cost</p>
+        </div>
+    </section>
+
+    <!-- Signature Builder Section (Hidden by default) -->
+    <section class="builder-section" id="builderSection" style="display: none;">
+        <div class="builder-container">
+            <div class="builder-form">
+                <h2>Design Your Signature</h2>
+                
+                <div class="form-group">
+                    <label>Template Style</label>
+                    <select id="template" onchange="updatePreview()">
+                        <option value="modern">Modern</option>
+                        <option value="classic">Classic</option>
+                        <option value="minimal">Minimal</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" placeholder="John Doe" onkeyup="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" id="jobTitle" placeholder="Marketing Manager" onkeyup="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="companyName" placeholder="Acme Corporation" onkeyup="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="john@company.com" onkeyup="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="phone" placeholder="+1 (555) 123-4567" onkeyup="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Website</label>
+                    <input type="url" id="website" placeholder="www.company.com" onkeyup="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>LinkedIn URL</label>
+                    <input type="url" id="linkedin" placeholder="linkedin.com/in/johndoe" onkeyup="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Twitter Handle</label>
+                    <input type="text" id="twitter" placeholder="@johndoe" onkeyup="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Primary Color</label>
+                    <input type="color" id="primaryColor" value="#667eea" onchange="updatePreview()">
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-copy" onclick="copySignature()">📋 Copy HTML</button>
+                    <button class="btn-download" onclick="downloadSignature()">💾 Download</button>
+                </div>
+            </div>
+
+            <div class="preview-panel">
+                <h3>Live Preview</h3>
+                <div class="preview-container" id="previewContainer">
+                    <div id="signaturePreview"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('loginModal')">&times;</button>
+            <h2>Welcome Back</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <div class="divider">OR</div>
+            <button class="google-btn" onclick="signInWithGoogle()">
+                <span>🔍</span> Continue with Google
+            </button>
+            <p class="switch-auth">Don't have an account? <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('signupModal')">&times;</button>
+            <h2>Create Account</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" required minlength="6">
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <div class="divider">OR</div>
+            <button class="google-btn" onclick="signInWithGoogle()">
+                <span>🔍</span> Continue with Google
+            </button>
+            <p class="switch-auth">Already have an account? <a href="#" onclick="switchModal('signupModal', 'loginModal')">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

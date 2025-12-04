@@ -1,0 +1,470 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* Navbar Styles */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-buttons button {
+    padding: 0.6rem 1.5rem;
+    margin-left: 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-login {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-signup, .btn-create {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-login:hover, .btn-signup:hover, .btn-create:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-email {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.btn-logout {
+    background: #ff4757;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-logout:hover {
+    background: #ff3838;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 5%;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+/* Features Section */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 3rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+/* Builder Section */
+.builder-section {
+    padding: 3rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.builder-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.builder-form h2, .preview-panel h3 {
+    color: #667eea;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 600;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-copy, .btn-download {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-copy {
+    background: #667eea;
+    color: white;
+}
+
+.btn-download {
+    background: #48dbfb;
+    color: white;
+}
+
+.btn-copy:hover, .btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.preview-panel {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.preview-container {
+    background: #f5f5f5;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    padding: 2rem;
+    min-height: 400px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #999;
+    border: none;
+    background: none;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal-content h2 {
+    color: #667eea;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #999;
+    position: relative;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #ddd;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.google-btn {
+    width: 100%;
+    padding: 1rem;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.google-btn:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.switch-auth {
+    text-align: center;
+    margin-top: 1rem;
+    color: #666;
+}
+
+.switch-auth a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.switch-auth a:hover {
+    text-decoration: underline;
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #333;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    display: none;
+    animation: slideUp 0.3s;
+    z-index: 3000;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Signature Templates */
+.signature-modern {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.signature-classic {
+    font-family: 'Georgia', serif;
+    color: #2c3e50;
+}
+
+.signature-minimal {
+    font-family: 'Helvetica', sans-serif;
+    color: #555;
+}
+
+.sig-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.sig-title {
+    font-size: 1rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.sig-company {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.sig-contact {
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.sig-social {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.sig-social a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .builder-container {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-panel {
+        position: static;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
